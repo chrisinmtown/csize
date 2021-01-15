@@ -1,0 +1,400 @@
+
+** Expect version information
+csize version information: $Revision: 1.17 $
+Testing program ../csize
+no problems are expected for files beginning with 't' or 'v'
+
+Input file: t00-hello.c
+   total    blank lines w/   nb, nc    semi- preproc. file
+   lines    lines comments    lines   colons  direct.
+--------+--------+--------+--------+--------+--------+----
+      12        3        9        7        3        1 t00-hello.c
+
+Compare input source as echoed back by csize with itself
+Diffs (expect three differences: start-line, end-line, and counts)
+0a1
+> --start of file--
+12a14,15
+> --end of file--
+>       12        3        9        7        3        1 t00-hello.c
+
+Input file: t01-empty.c
+   total    blank lines w/   nb, nc    semi- preproc. file
+   lines    lines comments    lines   colons  direct.
+--------+--------+--------+--------+--------+--------+----
+       0        0        0        0        0        0 t01-empty.c
+
+Compare input source as echoed back by csize with itself
+Diffs (expect three differences: start-line, end-line, and counts)
+0a1,3
+> --start of file--
+> --end of file--
+>        0        0        0        0        0        0 t01-empty.c
+
+Input file: t02-one-tok.c
+   total    blank lines w/   nb, nc    semi- preproc. file
+   lines    lines comments    lines   colons  direct.
+--------+--------+--------+--------+--------+--------+----
+       1        0        0        1        0        0 t02-one-tok.c
+
+Compare input source as echoed back by csize with itself
+Diffs (expect three differences: start-line, end-line, and counts)
+0a1
+> --start of file--
+1a3,4
+> --end of file--
+>        1        0        0        1        0        0 t02-one-tok.c
+
+Input file: t03-one-ln.c
+   total    blank lines w/   nb, nc    semi- preproc. file
+   lines    lines comments    lines   colons  direct.
+--------+--------+--------+--------+--------+--------+----
+       1        0        1        1        1        0 t03-one-ln.c
+
+Compare input source as echoed back by csize with itself
+Diffs (expect three differences: start-line, end-line, and counts)
+0a1
+> --start of file--
+1a3,4
+> --end of file--
+>        1        0        1        1        1        0 t03-one-ln.c
+
+Input file: t04-two-ln.c
+   total    blank lines w/   nb, nc    semi- preproc. file
+   lines    lines comments    lines   colons  direct.
+--------+--------+--------+--------+--------+--------+----
+       2        0        2        2        2        0 t04-two-ln.c
+
+Compare input source as echoed back by csize with itself
+Diffs (expect three differences: start-line, end-line, and counts)
+0a1
+> --start of file--
+2a4,5
+> --end of file--
+>        2        0        2        2        2        0 t04-two-ln.c
+
+Input file: t05-three-ln.c
+   total    blank lines w/   nb, nc    semi- preproc. file
+   lines    lines comments    lines   colons  direct.
+--------+--------+--------+--------+--------+--------+----
+       3        0        3        3        2        1 t05-three-ln.c
+
+Compare input source as echoed back by csize with itself
+Diffs (expect three differences: start-line, end-line, and counts)
+0a1
+> --start of file--
+3a5,6
+> --end of file--
+>        3        0        3        3        2        1 t05-three-ln.c
+
+Input file: t06-three-ln.c
+   total    blank lines w/   nb, nc    semi- preproc. file
+   lines    lines comments    lines   colons  direct.
+--------+--------+--------+--------+--------+--------+----
+       3        3        0        0        0        0 t06-three-ln.c
+
+Compare input source as echoed back by csize with itself
+Diffs (expect three differences: start-line, end-line, and counts)
+0a1
+> --start of file--
+3a5,6
+> --end of file--
+>        3        3        0        0        0        0 t06-three-ln.c
+
+Input file: t07-comments.c
+   total    blank lines w/   nb, nc    semi- preproc. file
+   lines    lines comments    lines   colons  direct.
+--------+--------+--------+--------+--------+--------+----
+      19        6       13        2        2        0 t07-comments.c
+
+Compare input source as echoed back by csize with itself
+Diffs (expect three differences: start-line, end-line, and counts)
+0a1
+> --start of file--
+19a21,22
+> --end of file--
+>       19        6       13        2        2        0 t07-comments.c
+
+Input file: t08-misc.c
+   total    blank lines w/   nb, nc    semi- preproc. file
+   lines    lines comments    lines   colons  direct.
+--------+--------+--------+--------+--------+--------+----
+      23        7       16       12        6        2 t08-misc.c
+
+Compare input source as echoed back by csize with itself
+Diffs (expect three differences: start-line, end-line, and counts)
+0a1
+> --start of file--
+23a25,26
+> --end of file--
+>       23        7       16       12        6        2 t08-misc.c
+
+Input file: t09-type.c
+   total    blank lines w/   nb, nc    semi- preproc. file
+   lines    lines comments    lines   colons  direct.
+--------+--------+--------+--------+--------+--------+----
+      12        5        7        4        3        1 t09-type.c
+
+Compare input source as echoed back by csize with itself
+Diffs (expect three differences: start-line, end-line, and counts)
+0a1
+> --start of file--
+12a14,15
+> --end of file--
+>       12        5        7        4        3        1 t09-type.c
+
+Input file: t10-two-fn.c
+   total    blank lines w/   nb, nc    semi- preproc. file
+   lines    lines comments    lines   colons  direct.
+--------+--------+--------+--------+--------+--------+----
+      24        4       20       15        9        1 t10-two-fn.c
+
+Compare input source as echoed back by csize with itself
+Diffs (expect three differences: start-line, end-line, and counts)
+0a1
+> --start of file--
+24a26,27
+> --end of file--
+>       24        4       20       15        9        1 t10-two-fn.c
+
+Input file: t11-pp-dir.c
+   total    blank lines w/   nb, nc    semi- preproc. file
+   lines    lines comments    lines   colons  direct.
+--------+--------+--------+--------+--------+--------+----
+      60       12       41       42        5       32 t11-pp-dir.c
+
+Compare input source as echoed back by csize with itself
+Diffs (expect three differences: start-line, end-line, and counts)
+0a1
+> --start of file--
+60a62,63
+> --end of file--
+>       60       12       41       42        5       32 t11-pp-dir.c
+
+Input file: t12-quier.c
+   total    blank lines w/   nb, nc    semi- preproc. file
+   lines    lines comments    lines   colons  direct.
+--------+--------+--------+--------+--------+--------+----
+      33        4       29       20        4       11 t12-quier.c
+
+Compare input source as echoed back by csize with itself
+Diffs (expect three differences: start-line, end-line, and counts)
+0a1
+> --start of file--
+33a35,36
+> --end of file--
+>       33        4       29       20        4       11 t12-quier.c
+
+Input file: t13-strings.c
+   total    blank lines w/   nb, nc    semi- preproc. file
+   lines    lines comments    lines   colons  direct.
+--------+--------+--------+--------+--------+--------+----
+      31       10        4       19        8        0 t13-strings.c
+
+Compare input source as echoed back by csize with itself
+Diffs (expect three differences: start-line, end-line, and counts)
+0a1
+> --start of file--
+31a33,34
+> --end of file--
+>       31       10        4       19        8        0 t13-strings.c
+
+Input file: t14-bslash.c
+   total    blank lines w/   nb, nc    semi- preproc. file
+   lines    lines comments    lines   colons  direct.
+--------+--------+--------+--------+--------+--------+----
+      11        5        6        3        2        0 t14-bslash.c
+
+Compare input source as echoed back by csize with itself
+Diffs (expect three differences: start-line, end-line, and counts)
+0a1
+> --start of file--
+11a13,14
+> --end of file--
+>       11        5        6        3        2        0 t14-bslash.c
+
+Input file: t15-westberg.c
+   total    blank lines w/   nb, nc    semi- preproc. file
+   lines    lines comments    lines   colons  direct.
+--------+--------+--------+--------+--------+--------+----
+       7        3        4        2        0        2 t15-westberg.c
+
+Compare input source as echoed back by csize with itself
+Diffs (expect three differences: start-line, end-line, and counts)
+0a1
+> --start of file--
+7a9,10
+> --end of file--
+>        7        3        4        2        0        2 t15-westberg.c
+
+Input file: v-comment.c
+   total    blank lines w/   nb, nc    semi- preproc. file
+   lines    lines comments    lines   colons  direct.
+--------+--------+--------+--------+--------+--------+----
+      16        2       14        0        0        0 v-comment.c
+
+Compare input source as echoed back by csize with itself
+Diffs (expect three differences: start-line, end-line, and counts)
+0a1
+> --start of file--
+16a18,19
+> --end of file--
+>       16        2       14        0        0        0 v-comment.c
+
+Input file: v-csize.c
+   total    blank lines w/   nb, nc    semi- preproc. file
+   lines    lines comments    lines   colons  direct.
+--------+--------+--------+--------+--------+--------+----
+     125       12       19       95       42        3 v-csize.c
+
+Compare input source as echoed back by csize with itself
+Diffs (expect three differences: start-line, end-line, and counts)
+0a1
+> --start of file--
+125a127,128
+> --end of file--
+>      125       12       19       95       42        3 v-csize.c
+
+Input file: v-pp-dir.c
+   total    blank lines w/   nb, nc    semi- preproc. file
+   lines    lines comments    lines   colons  direct.
+--------+--------+--------+--------+--------+--------+----
+      19        2        7       10        0        4 v-pp-dir.c
+
+Compare input source as echoed back by csize with itself
+Diffs (expect three differences: start-line, end-line, and counts)
+0a1
+> --start of file--
+19a21,22
+> --end of file--
+>       19        2        7       10        0        4 v-pp-dir.c
+
+
+Testing program ../csize
+expect some problems for files beginning with 'z'
+
+Input file: z01-bad-char.c
+"z01-bad-char.c", line 5: bad character
+
+Input file: z02-bad-char.c
+"z02-bad-char.c", line 3: bad character
+
+Input file: z03-no-nl.c
+   total    blank lines w/   nb, nc    semi- preproc. file
+   lines    lines comments    lines   colons  direct.
+--------+--------+--------+--------+--------+--------+----
+       7        1        7        1        1        0 z03-no-nl.c
+
+Input file: z04-bad-char.c
+"z04-bad-char.c", line 1: bad character
+
+Input file: z07-str-nl.c
+"z07-str-nl.c", line 4: newline in string literal
+
+Input file: z08-str-nl.c
+"z08-str-nl.c", line 4: newline in string literal
+"z08-str-nl.c", line 5: newline in string literal
+
+Input file: z09-str-eof.c
+"z09-str-eof.c", line 4: EOF in string literal
+
+Input file: z10-pp-c-eof.c
+"z10-pp-c-eof.c", line 5: EOF in comment
+"z10-pp-c-eof.c", line 5: EOF in preprocessor directive
+
+Input file: zzz-version.c
+   total    blank lines w/   nb, nc    semi- preproc. file
+   lines    lines comments    lines   colons  direct.
+--------+--------+--------+--------+--------+--------+----
+       3        0        3        0        0        0 zzz-version.c
+
+
+Test count of two files
+      12        3        9        7        3        1 t00-hello.c
+      12        3        9        7        3        1 t00-hello.c
+      24        6       18       14        6        2 total
+
+Test count of three files
+      12        3        9        7        3        1 t00-hello.c
+      12        3        9        7        3        1 t00-hello.c
+      12        3        9        7        3        1 t00-hello.c
+      36        9       27       21        9        3 total
+
+** Expect output with headers
+   total    blank lines w/   nb, nc    semi- preproc. file
+   lines    lines comments    lines   colons  direct.
+--------+--------+--------+--------+--------+--------+----
+      12        3        9        7        3        1 t00-hello.c
+
+** Expect echoed output
+--start of file--
+
+/* hello, world  COMMENT
+ * COMMENT */
+
+#include <stdio.h>						/*NBNCOMMENT*/
+int main(argc, argv)  /* what about envp?  COMMENT */		/*NBNCOMMENT*/
+int argc;							/*NBNCOMMENT*/
+char **argv;							/*NBNCOMMENT*/
+{								/*NBNCOMMENT*/
+   printf("hello, world.\n");					/*NBNCOMMENT*/
+}								/*NBNCOMMENT*/
+
+--end of file--
+      12        3        9        7        3        1 t00-hello.c
+
+** Expect echoed output with headers
+--start of file--
+
+/* hello, world  COMMENT
+ * COMMENT */
+
+#include <stdio.h>						/*NBNCOMMENT*/
+int main(argc, argv)  /* what about envp?  COMMENT */		/*NBNCOMMENT*/
+int argc;							/*NBNCOMMENT*/
+char **argv;							/*NBNCOMMENT*/
+{								/*NBNCOMMENT*/
+   printf("hello, world.\n");					/*NBNCOMMENT*/
+}								/*NBNCOMMENT*/
+
+--end of file--
+   total    blank lines w/   nb, nc    semi- preproc. file
+   lines    lines comments    lines   colons  direct.
+--------+--------+--------+--------+--------+--------+----
+      12        3        9        7        3        1 t00-hello.c
+
+** Expect usage message
+usage: ../csize [ -ehv ] file.c [ file.c ... ]
+       -e == echo the input files
+       -h == print a header before the data
+       -v == report version information
+
+** Expect usage message
+usage: ../csize [ -ehv ] file.c [ file.c ... ]
+       -e == echo the input files
+       -h == print a header before the data
+       -v == report version information
+
+** Expect error: echoed file with bad char
+--start of file--
+/* cause an error in the regression test	COMMENT
+ * because $ is not a valid character		COMMENT
+ * of quotes 					COMMENT
+COMMENT */
+                          $
+                          ^
+              bad character
+                           include <stdio.h>	/*NBNCOMMENT*/
+
+--end of file--
+
+** Expect error: file does not exist
+z-does-not-exist.c: No such file or directory
+
+** Expect error: illegal option
+csize: illegal option -- u
+usage: ../csize [ -ehv ] file.c [ file.c ... ]
+       -e == echo the input files
+       -h == print a header before the data
+       -v == report version information
+

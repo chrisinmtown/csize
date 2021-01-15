@@ -1,0 +1,45 @@
+$RCSfile: README,v $
+
+README for the directory of tests (t-dir).
+
+This directory contains a set of regression tests for csize.
+Included here are files that were sent to me by users of csize,
+especially those that caused faults to manifest themeselves
+as failures.
+
+Nearly all of the files in this directory are accepted by the
+C compiler.  Those that are not are those with unterminated
+comments, unterminated preprocessor directives, etc.; in short,
+the pathological cases I used to test csize.
+
+CMP-COUNTS.sh:
+
+This script compares the values computed by the program to values
+computed using standard unix commands such as grep, awk, and wc. 
+If you're using a PC or other non-unix system, you can't run this
+script.  This shell script also requires writing the data files for
+consumption by grep.  For example, the string COMMENT appears in
+every comment line in every file in this directory so that a grep
+for COMMENT will give the desired results.  See the comments in the
+shell script for other hard-wired dependencies on the contents of
+the test data files.
+
+TEST-COUNTS.sh:
+
+Calls the CMP-COUNTS.sh script on most of the files in this
+directory.  If the program computes an incorrect count, this test
+suite *should* find it. 
+
+The output from running the shell script TEST-COUNTS.sh should
+match the output stored in the file TEST-COUNTS.ok
+
+TEST-OUTPUT.sh:
+
+The tests run by this script exercise the program and compare
+the output to output generated on my machine.  This checks that
+we both see the same behavior.  If the program has a fault that
+causes a failure (miscount) on both of our machines, this test
+suite will not find it.
+
+The output from running the shell script TEST-OUTPUT.sh should
+match that stored in the file TEST-OUTPUT.ok

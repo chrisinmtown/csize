@@ -1,0 +1,22 @@
+# Configure template for csize
+# Process this file with autoconf to produce a configure script.
+# @configure_input@
+
+AC_INIT(csize.c)
+AC_PROG_MAKE_SET
+CFLAGS=${CFLAGS--O}
+LDFLAGS=${LDFLAGS-}
+AC_PROG_INSTALL
+AC_PROG_CC
+fp_C_PROTOTYPES
+AC_PROG_LEX
+case "$LEX" in
+flex)
+  echo "NOTE:  I found flex, but didn't check the version number."
+  ;;
+lex)
+  echo "NOTE:  Sorry, flex is required, and I couldn't find it."
+  exit 1
+  ;;
+esac
+AC_OUTPUT(Makefile)

@@ -1,0 +1,173 @@
+CSIZE(1)                                                              CSIZE(1)
+
+NAME
+       csize − measure the size of C source files
+
+SYNOPSIS
+       csize [ −−ehv ] filename.c [ ...  ]
+
+DESCRIPTION
+       csize  performs lexical analysis on the named C source files to collect
+       several size measures, keeping a total count for  all  files.   Use  of
+       csize is superior to wc because in addition to newline counts, the user
+       can measure code density, commenting,  and  use  of  the  preprocessor.
+       Both  old‐style (K&R) and new‐style (ANSI) C files are accepted.  The C
+       preprocessor is  not  run,  and  preprocessor  directives  are  counted
+       instead  of  being  expanded.   The program was designed to measure the
+       source as the programmer sees it.  The input is expected to be  accept‐
+       able  for a C compiler; lexically incorrect input will cause unreliable
+       output ("GIGO").  The program has much of the functionality of a C pre‐
+       processor.   The logically successive phases described in K&Rrev2 which
+       a preprocessor must implement are implemented in the form of  a  single
+       pass over the input.
+
+OPTIONS
+       −−ee     Echo the input file while it is being processed.
+
+       −−hh     Include a descriptive header when printing the results.
+
+       −−vv     Report version information (all other arguments are ignored).
+
+MEASURES
+       csize  collects  data for the following size measures of C source code:
+       total lines, blank lines,  lines  with  comments,  nonblank  noncomment
+       lines,  semicolons,  and preprocessor directives.  A line is defined as
+       the sequence of characters between two newline  characters.   The  sole
+       exception  to this definition is the first line of a file, which starts
+       at the beginning of the input file.  The last line is  expected  to  be
+       terminated by a newline character.
+
+       total lines
+              The number of newline characters in the file.  This is identical
+              to the result computed by  wc  with  the  lines  ("−l")  option.
+              (However,  if  it were sufficient to use wc, this program would
+              be wholly unnecessary!)
+
+              Pitfalls: arguably a poor measure of a file’s size, because this
+              measure  is  heavily  influenced  by bracing style, spacing, and
+              continuation lines.
+
+       blank lines
+              The number of lines in the file  with  nothing  but  white‐space
+              characters  between  the previous newline character and the new‐
+              line that terminates  the  line.   A  white‐space  character  is
+              defined as a blank, a horizontal tab, a vertical tab, or a form‐
+              feed character.
+
+              Pitfalls: blank lines within comments are counted as lines  with
+              comments.  A blank line as a preprocessor continuation line will
+              terminate the directive and is therefore counted not as a  blank
+              line but as a nonblank noncomment line.
+
+       lines with ccomments
+              The  number  of lines on which a comment occurs.  The appearance
+              of a comment anywhere on a line causes that line to be marked as
+              having  a  comment.   Any  number of comments, each with its own
+              start token ("/*") and end token ("*/"), may occur on  a  single
+              line;  the line will only be counted once.  If a comment extends
+              over multiple lines, each line is counted as having a comment.
+
+              Pitfalls: in C, unlike FORTRAN, there is no such thing as a pure
+              comment line.  Comments can appear before, within, or after nor‐
+              mal C statements on the same line as the statements, as well  as
+              on lines of their own.  Therefore the sum of the measures "lines
+              with comments," "blank lines," and "noncomment  nonblank  lines"
+              will  only  sometimes  be  equal  to the measure "number of new‐
+              lines," and then only by chance.  See also  the  discussions  in
+              blank lines  and preprocessor directives in regard to counting
+              lines with comments.
+
+       nonblank noncomment lines
+              The number of lines that  are  not  blank  and  do  not  consist
+              entirely  of  a comment.  This includes preprocessor directives.
+              This measure approximates the number of nonblank,  noncommentary
+              source lines (often labeled NCSL) in a C source file.
+
+              Pitfalls:  This  measure  includes  lines with nothing but curly
+              braces, so choosing a different bracing style  can  affect  this
+              measure significantly.
+
+       semicolons
+              The number of semicolons that do not appear in string constants.
+              This measure approximates the number of  variable  declarations,
+              function  prototypes,  and  executable  statements in a C source
+              file.
+
+              Pitfalls: Although most statements are terminated with  a  semi‐
+              colon,  function  headers have no semicolons, "while" statements
+              and "case" statements can be written  with  a  bare  minimum  of
+              semicolons,  and  a  single  for  statement has a minimum of two
+              semicolons.  See also the discussion in preprocessor directives
+              in regard to counting semicolons.
+
+
+       preprocessor directives
+              The  number  of  occurrences of the hash sign ("#"), followed by
+              optional white‐space characters, followed by a preprocessor key‐
+              word,  followed by any characters up to the next nonescaped new‐
+              line.  The following keywords are  recognized:   define,  undef,
+              include, line, error, pragma, endif, if, ifdef, ifndef, elif, or
+              else,  include_next,  import,  warning,  sccs,  ident,   assert,
+              unassert.   Again,  the  preprocessor is not run: included files
+              are not pulled in, no macro substitutions are done, etc.
+
+              Pitfalls: The hash sign does not have to be the first non‐white‐
+              space character on a line.  Comments that begin on the same line
+              as a preprocessor directive are processed until the closing com‐
+              ment  token,  and  then processing of the preprocessor directive
+              resumes.  Other than comments, all characters between  the  pre‐
+              processor  keyword  and the next nonescaped newline are ignored,
+              so any other preprocessor directives or semicolons on  the  same
+              line are not counted.  See also the discussion in blank lines in
+              regard to counting preprocessor directives.
+
+EXAMPLE
+       A version of the hello, world program is measured in this example.
+
+       % cat hello.c
+       /* hello, world */
+
+       #include <stdio.h>
+       int main(argc, argv) /* what about envp? */
+       int argc;
+       char **argv;
+       {
+          printf("hello, world.0);
+       }
+       % csize ‐h hello.c
+          total    blank lines w/   nb, nc    semi‐ preproc. file
+          lines    lines comments    lines   colons  direct.
+       ‐‐‐‐‐‐‐‐+‐‐‐‐‐‐‐‐+‐‐‐‐‐‐‐‐+‐‐‐‐‐‐‐‐+‐‐‐‐‐‐‐‐+‐‐‐‐‐‐‐‐+‐‐‐‐
+              9        1        2        7        3        1 hello.c
+
+DIAGNOSTICS
+       The program will complain about lexical errors  such  as  an  unescaped
+       newline  character inside a string constant or an end‐of‐file condition
+       within a comment.
+
+BUGS
+       This entire program can justifiably be considered called a bug, because
+       these  measures should be computed by the C compiler.  Compiler support
+       is required to count declarations and executable statements.
+
+       The measures are strongly tied to the newline character.  If  the  last
+       character in the file is not a newline (users of _e_m_a_c_s should be famil‐
+       iar with this phenomenon), then the last line will not  be  counted  in
+       accordance  with  one’s intuition.  In other words, nonblank noncomment
+       text on the last line will not cause  the  appropriate  counter  to  be
+       incremented.
+
+       ANSI‐style  trigraphs  are not supported.  Neither dollar signs ($) nor
+       at signs (@) are accepted in identifiers.
+
+       There are certainly pathological cases out there that will confuse  the
+       program,  although they are accepted by a C compiler.  The author would
+       much appreciate being told of such cases and any possible remedies.
+
+SEE ALSO
+       wc(1), lc(1) by Brian Marick, kdsi(1) by Brian Renaud, _The C  Program‐
+       ming  Language_  by  Brian W. Kernighan and Dennis M. Ritchie, Prentice
+       Hall, 1988.
+
+AUTHOR
+       Christopher Lott

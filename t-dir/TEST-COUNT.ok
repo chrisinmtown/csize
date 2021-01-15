@@ -1,0 +1,201 @@
+Testing program ../csize
+expect some errors for input files that begin with 'z'
+(this makes sure that the test scaffold detects errors)
+
+Input file: t00-hello.c
+Matched new lines:  12 = 12
+Matched blank lines:  3 = 3
+Matched comments:  9 = 9
+Matched nonblank noncomment lines:  7 = 7
+Matched semicolons:  3 = 3
+Matched pp directives:  1 = 1
+
+Input file: t01-empty.c
+Matched new lines:  0 = 0
+Matched blank lines:  0 = 0
+Matched comments:  0 = 0
+Matched nonblank noncomment lines:  0 = 0
+Matched semicolons:  0 = 0
+Matched pp directives:  0 = 0
+
+Input file: t02-one-tok.c
+Matched new lines:  1 = 1
+Matched blank lines:  0 = 0
+Matched comments:  0 = 0
+Matched nonblank noncomment lines:  1 = 1
+Matched semicolons:  0 = 0
+Matched pp directives:  0 = 0
+
+Input file: t03-one-ln.c
+Matched new lines:  1 = 1
+Matched blank lines:  0 = 0
+Matched comments:  1 = 1
+Matched nonblank noncomment lines:  1 = 1
+Matched semicolons:  1 = 1
+Matched pp directives:  0 = 0
+
+Input file: t04-two-ln.c
+Matched new lines:  2 = 2
+Matched blank lines:  0 = 0
+Matched comments:  2 = 2
+Matched nonblank noncomment lines:  2 = 2
+Matched semicolons:  2 = 2
+Matched pp directives:  0 = 0
+
+Input file: t05-three-ln.c
+Matched new lines:  3 = 3
+Matched blank lines:  0 = 0
+Matched comments:  3 = 3
+Matched nonblank noncomment lines:  3 = 3
+Matched semicolons:  2 = 2
+Matched pp directives:  1 = 1
+
+Input file: t06-three-ln.c
+Matched new lines:  3 = 3
+Matched blank lines:  3 = 3
+Matched comments:  0 = 0
+Matched nonblank noncomment lines:  0 = 0
+Matched semicolons:  0 = 0
+Matched pp directives:  0 = 0
+
+Input file: t07-comments.c
+Matched new lines:  19 = 19
+Matched blank lines:  6 = 6
+Matched comments:  13 = 13
+Matched nonblank noncomment lines:  2 = 2
+Matched semicolons:  2 = 2
+Matched pp directives:  0 = 0
+
+Input file: t08-misc.c
+Matched new lines:  23 = 23
+Matched blank lines:  7 = 7
+Matched comments:  16 = 16
+Matched nonblank noncomment lines:  12 = 12
+Matched semicolons:  6 = 6
+Matched pp directives:  2 = 2
+
+Input file: t09-type.c
+Matched new lines:  12 = 12
+Matched blank lines:  5 = 5
+Matched comments:  7 = 7
+Matched nonblank noncomment lines:  4 = 4
+Matched semicolons:  3 = 3
+Matched pp directives:  1 = 1
+
+Input file: t10-two-fn.c
+Matched new lines:  24 = 24
+Matched blank lines:  4 = 4
+Matched comments:  20 = 20
+Matched nonblank noncomment lines:  15 = 15
+Matched semicolons:  9 = 9
+Matched pp directives:  1 = 1
+
+Input file: t11-pp-dir.c
+Matched new lines:  60 = 60
+Matched blank lines:  12 = 12
+Matched comments:  41 = 41
+Matched nonblank noncomment lines:  42 = 42
+Matched semicolons:  5 = 5
+Matched pp directives:  32 = 32
+
+Input file: t12-quier.c
+Matched new lines:  33 = 33
+Matched blank lines:  4 = 4
+Matched comments:  29 = 29
+Matched nonblank noncomment lines:  20 = 20
+Matched semicolons:  4 = 4
+Matched pp directives:  11 = 11
+
+Input file: t13-strings.c
+Matched new lines:  31 = 31
+Matched blank lines:  10 = 10
+Matched comments:  4 = 4
+Matched nonblank noncomment lines:  19 = 19
+Matched semicolons:  8 = 8
+Matched pp directives:  0 = 0
+
+Input file: t14-bslash.c
+Matched new lines:  11 = 11
+Matched blank lines:  5 = 5
+Matched comments:  6 = 6
+Matched nonblank noncomment lines:  3 = 3
+Matched semicolons:  2 = 2
+Matched pp directives:  0 = 0
+
+Input file: t15-westberg.c
+Matched new lines:  7 = 7
+Matched blank lines:  3 = 3
+Matched comments:  4 = 4
+Matched nonblank noncomment lines:  2 = 2
+Matched semicolons:  0 = 0
+Matched pp directives:  2 = 2
+
+Input file: z01-bad-char.c
+*** Mismatch in count of new lines:  "z01-bad-char.c", != 6
+*** Mismatch in count of blank lines:  line != 1
+*** Mismatch in count of comments:  5: != 5
+*** Mismatch in count of nonblank noncomment lines:  bad != 1
+*** Mismatch in count of semicolons:  character != 0
+*** Mismatch in count of preprocessor directives:   != 0
+
+Input file: z02-bad-char.c
+*** Mismatch in count of new lines:  "z02-bad-char.c", != 8
+*** Mismatch in count of blank lines:  line != 3
+*** Mismatch in count of comments:  3: != 3
+*** Mismatch in count of nonblank noncomment lines:  bad != 1
+*** Mismatch in count of semicolons:  character != 0
+*** Mismatch in count of preprocessor directives:   != 1
+
+Input file: z03-no-nl.c
+Matched new lines:  7 = 7
+Matched blank lines:  1 = 1
+*** Mismatch in count of comments:  7 != 6
+*** Mismatch in count of nonblank noncomment lines:  1 != 0
+Matched semicolons:  1 = 1
+Matched pp directives:  0 = 0
+
+Input file: z04-bad-char.c
+*** Mismatch in count of new lines:  "z04-bad-char.c", != 1
+*** Mismatch in count of blank lines:  line != 0
+*** Mismatch in count of comments:  1: != 0
+*** Mismatch in count of nonblank noncomment lines:  bad != 0
+*** Mismatch in count of semicolons:  character != 0
+*** Mismatch in count of preprocessor directives:   != 1
+
+Input file: z07-str-nl.c
+*** Mismatch in count of new lines:  "z07-str-nl.c", != 6
+*** Mismatch in count of blank lines:  line != 4
+*** Mismatch in count of comments:  4: != 0
+*** Mismatch in count of nonblank noncomment lines:  newline != 0
+*** Mismatch in count of semicolons:  in != 0
+*** Mismatch in count of preprocessor directives:  string != 0
+
+Input file: z08-str-nl.c
+*** Mismatch in count of new lines:  "z08-str-nl.c", != 5
+*** Mismatch in count of blank lines:  line != 2
+*** Mismatch in count of comments:  4: != 0
+*** Mismatch in count of nonblank noncomment lines:  newline != 0
+*** Mismatch in count of semicolons:  in != 1
+*** Mismatch in count of preprocessor directives:  string != 0
+
+Input file: z09-str-eof.c
+*** Mismatch in count of new lines:  "z09-str-eof.c", != 3
+*** Mismatch in count of blank lines:  line != 2
+*** Mismatch in count of comments:  4: != 0
+*** Mismatch in count of nonblank noncomment lines:  EOF != 0
+*** Mismatch in count of semicolons:  in != 0
+*** Mismatch in count of preprocessor directives:  string != 0
+
+Input file: zzz-version.c
+Matched new lines:  3 = 3
+Matched blank lines:  0 = 0
+*** Mismatch in count of comments:  3 != 0
+Matched nonblank noncomment lines:  0 = 0
+Matched semicolons:  0 = 0
+Matched pp directives:  0 = 0
+
+Test count of two files
+Matched newlines: 24 = 24
+
+Test count of three files
+Matched newlines: 36 = 36

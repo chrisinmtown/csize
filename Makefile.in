@@ -1,0 +1,197 @@
+# 
+# $RCSfile: Makefile.in,v $
+#
+# Makefile.in for csize, a program to measure the size of C source files
+# Copyright (C) 1994 Christopher Lott
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation.  See the file COPYING for more details.
+#
+
+#
+# to be safe
+#
+SHELL	= /bin/sh
+@SET_MAKE@
+
+#
+# An ANSI C compiler is recommend but not required; if
+# not available, function prototypes will be converted.
+# The U macro is set by configure and indicates whether 
+# to invoke ansi2knr or not; see usage below.
+#
+U = @U@
+
+#
+# in case source and binaries are split
+#
+srcdir = @srcdir@
+
+#
+# Flex is required.  Lex refuses to accept the file scan.l
+#
+CC		= @CC@
+DEFS		= @DEFS@
+CFLAGS		= @CFLAGS@
+CPPFLAGS	= @CPPFLAGS@
+LDFLAGS		= @LDFLAGS@
+LIBS		= @LIBS@
+LEX		= @LEX@
+
+#
+# how to install program and man page
+#
+INSTALL = @INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
+INSTALL_DATA = @INSTALL_DATA@
+
+#
+# where to install the program and man page
+#
+
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+bindir = $(exec_prefix)/bin
+mandir = $(prefix)/man/man1
+manext = .1
+
+CPPFLAGS = -I. -I$(srcdir) $(DEFS)
+
+.c.o:
+	$(CC) -c $(CPPFLAGS) $(CFLAGS) $<
+
+.l.c:
+	$(LEX) -t $< > $@
+
+#
+# source files for the program, both documentation and code
+# all of these files are kept under version control 
+#
+SRCFILES  = README INSTALL csize.man \
+		Makefile.in configure.in acsite.m4 configure install-sh \
+		csize.h csize.c scan.h scan.l patchlevel.h \
+		ansi2knr.c ansi2knr.1 COPYING ChangeLog
+
+#
+# files needed to build the program
+# the $U macro will be empty if the compiler supports prototypes,
+# and have just an underscore if it does not - see targets below
+#
+
+SRCS	= scan.l csize.c
+OBJS	= $Uscan.o $Ucsize.o
+HDRS	= scan.h
+LIBS	=
+
+all: csize
+
+csize:	$(OBJS)
+	$(CC) $(LDFLAGS) -o $@ $(OBJS) $(LIBS)
+
+
+$(OBJS): csize.h
+scan.o: scan.h
+
+#
+# targets to help people without ANSI C compilers
+# note underscores - works in cooperation with $U macro
+#
+ansi2knr: ansi2knr.c
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o $@ $(srcdir)/ansi2knr.c
+
+_csize.c: csize.c ansi2knr
+	./ansi2knr $(srcdir)/csize.c > $@
+
+_scan.c: scan.c ansi2knr
+	./ansi2knr $(srcdir)/scan.c > $@
+
+# 
+# files that can be remade and hence nuked
+# 
+EXTRAFILES = scan.c.flex
+
+# 
+# pattern that describes files from test directory
+# that should be packed into a tar file
+# need to leave out directory by name of RCS
+#
+TESTDIR = t-dir
+TESTDIRFILES = $(TESTDIR)/README $(TESTDIR)/[A-QS-Za-z]*
+
+#
+# files to include in the shar archive
+#
+SHARFILES = $(SRCFILES) $(EXTRAFILES) $(TESTDIRFILES)
+
+#
+# run the test suite
+#
+check: csize
+	@echo "Running tests in subdirectory $(TESTDIR)"
+	cd $(TESTDIR); $(MAKE) -k
+
+install: csize
+	$(INSTALL_PROGRAM) csize     $(bindir)
+	$(INSTALL_DATA)    csize.man $(mandir)/csize$(manext)
+
+uninstall:
+	rm -f $(bindir)/csize
+	rm -f $(mandir)/csize$(manext)
+
+checkout:
+	co -l $(SRCFILES)
+
+checkin:
+	ci -f -u $(SRCFILES)
+
+patch:
+	-rcsdiff -q -c -r1.14 $(SRCFILES) > $@
+
+scan.c.flex: scan.c
+	mv $? $@
+
+clean:
+	cd $(TESTDIR); $(MAKE) $@
+	rm -f scan.c _csize.c _scan.c *.o csize
+
+distclean: clean
+	rm -f Makefile config.status config.log config.cache ansi2knr
+
+realclean: distclean 
+	rm -f $(EXTRAFILES) csize.shar*
+
+#
+# pack all files into one shar file
+#
+csize.shar: $(SHARFILES)
+	shar -F $(SHARFILES) > $@
+
+# 
+# rules for creating distributions
+# pack all files into shar files of a size that is suitable for distributing
+#
+shar:	$(SHARFILES)
+	shar -a -F -n csize -o csize.shar.part -l 80 $(SHARFILES)
+
+dist:	$(SHARFILES)
+	tar cf - $(SHARFILES) | (cd ../csize-dist; tar xf -)
+
+#
+# for PC users - pack all files into one zip file
+#
+csize.zip: $(SHARFILES)
+	zip $@ $(SHARFILES)
+
+csize.zip.uu: csize.zip
+	uuencode $? < $? > $@
+
+#
+# for configuration etc.
+#
+Makefile: Makefile.in config.status
+	$(SHELL) config.status
+config.status: configure
+	$(SHELL) config.status --recheck
+configure: configure.in
+	cd $(srcdir); autoconf

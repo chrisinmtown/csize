@@ -1,0 +1,208 @@
+Mon Jan 4 10:00:00 2021  Christopher Lott
+
+	* Version 1.17
+	* Declare externals correctly so code compiles
+	* Drop some broken tests
+
+Fri Mar 21 10:00:44 1997  Christopher Lott  <lott@dijon.bellcore.com>
+
+	* README and others: removed duplicate contact info from files,
+	  put updated info in the README.
+
+Sun Apr  9 16:33:33 1995  Christopher Lott  <lott@bogner.informatik.uni-kl.de>
+
+	* Version 1.16
+	* INSTALL: added a note to say that flex version 2.5.1 works fine.
+	* scan.l: fixed a few comments about the version number.
+
+Sun Mar 12 09:53:25 1995  Christopher Lott  <lott@bogner.informatik.uni-kl.de>
+
+	* Version 1.15
+	* Makefile.in: started using shar from GNU sharutils, so it's no
+	  longer necessary to pack up the test directory using tar.
+	  Updated the INSTALL file to reflect the change.
+
+Mon Mar  6 10:07:46 1995  Christopher Lott  <lott@bogner.informatik.uni-kl.de>
+
+	* Makefile.in: added rules for zip.
+	* t-dir/Makefile: added "-" before diff cmd; updated messages
+	  in resonse to comments from Francois Pinard.
+	* configure.in: updated for autoconf v2.1.
+	* aclocal.m4: renamed as acsite.m4, made some changes.
+
+Tue Feb 28 10:12:44 1995  Christopher Lott  <lott@bogner.informatik.uni-kl.de>
+
+        * README et al.: replaced rcs variable Id with RCSfile.  This
+          means that the version number no longer appears in every source
+          file, and patches become much smaller.
+        * t-dir/TEST-OUT.sh: Changed "rm" to "rm -f"
+        * t-dir/zzz-version.h: added to track version information.
+
+Wed Jan 25 09:11:34 1995  Christopher Lott  <lott@bogner.informatik.uni-kl.de>
+
+	* Version 1.14
+	* scan.l: made code clean for C++ (tested with g++) by handling
+	  flex's redefinition of input() -> yyinput() if the symbol 
+	  __cplusplus is defined.  No other changes were necessary.
+	  g++ still complains about a missing prototype for getopt(), 
+	  but adding one results in a link error, curious.
+
+Tue Oct 18 18:54:51 1994  Christopher Lott  <lott@bogner.informatik.uni-kl.de>
+
+	* Version 1.13
+	* scan.l: changed data type on two instances of variable 'c',
+	  which is used to catch the value from input(), from char to int
+	  after a bug report from an AIX user.  I suspect char's are
+	  unsigned on his machine; clearly they are signed on the Sun, my
+	  development platform.  Annoyingly, I had it right in one routine
+	  but wrong in two others.
+	* Finally documented my revision control process so that I'll
+	  stick to it.  Generated a patch 1.12 -> 1.13.
+
+Tue Oct 11 16:25:41 1994  Christopher Lott  <lott@bogner.informatik.uni-kl.de>
+
+	* Version 1.12
+	* Makefile.in: removed the test directory's dependency on the
+	  tarred/compressed/uuencoded file due to a loop.  The test
+	  directory may be unpacked unnecessarily, but this is not as
+	  serious as failing to generate a new tarred/compressed/uuencoded
+	  file after the test data changes.
+
+Fri Sep  2 08:37:36 1994  Christopher Lott  (lott@bogner.informatik.uni-kl.de)
+
+	* csize.man: added mention that trigraphs are not supported, and
+	  neither dollar signs nor at signs are accepted in identifiers.
+	  Changed discussion of handling comments on preprocessor lines.
+
+Thu Sep  1 14:54:43 1994  Christopher Lott  (lott@bogner.informatik.uni-kl.de)
+
+	* Version 1.11
+	* Responded to bug report from Sven-Ove Westberg <sow@cad.luth.se>
+	  who correctly pointed out that csize was not properly handling
+	  comments that occur on the same line as a preprocessor
+	  directive.  Extended function pp_dir() to handle comments.
+
+Sun Aug 21 13:16:15 1994  Christopher Lott  (lott@bogner.informatik.uni-kl.de)
+        * Version 1.10
+	* Shortened file names to stay within the 14-character constraint
+	  imposed by some sytems.
+	* Added a missing closing quotation mark in the test directory
+	  Makefile
+	* Adapted to version 2.4.7 of flex.
+	* Updated the README to admit that I do not fully utilize the
+	  capabilities of the scanner.
+	* Reworked the changelog into Gnu's accepted format
+	* Moved function names in C files to column 1 to help ansi2knr
+	* Moved Makefile to Makefile.in, reworked it for autoconf
+	* Created configure.in so that I can use autoconf
+	* Copied aclocal.m4 from GNUm4-1.2 directory
+	* Created configure using autoconf
+	* Updated the INSTALL file to state clearly the dependence on UNIX
+	  systems, and to reflect the addition of configure.
+	* Copied the install.sh file from GNUm4-1.2 for SYSV people.
+
+Sun Jul 24 10:00:45 1994  Christopher Lott  (lott@bogner.informatik.uni-kl.de)
+
+        * Version 1.9.
+	* Failure: the string literal "\\" was not recognized properly.
+	  Removed fault by reworking code to process backslashes in
+	  string literals more intelligently.  
+	* Did the same for pp dirs, where the same fault was lurking.
+
+Wed Jul 29 07:12.49 1994  Christopher Lott  (lott@bogner.informatik.uni-kl.de)
+
+        * Version 1.8
+	* Split the README into a README and an INSTALL file.
+	* Renamed version.h to patchlevel.h
+	* Added a target to the Makefile for unpacking the tests.
+
+Mon Jun 13 05:19:40 1994  Christopher Lott  (lott@bogner.informatik.uni-kl.de)
+
+        * Version 1.7
+	* Added code to handle the cases where a totally blank line
+	  appears in a comment or a preprocessor directive.  Lines with
+	  white-space characters were already being treated correctly, 
+	  but lines with nothing but a newline were not.  In the cases
+	  of comments or preprocessor directives, the line is not counted
+	  in the blank-line category but instead in the comment or nonblank
+	  noncomment line category, respectively.  
+	* Updated the man page to explain these counting rules.
+	* Added test cases (v-*) for these conditions.  Because counting
+	  the blank lines depends on their surrounding context, I can't use
+	  a grep/wc combination to verify the counts automatically.
+
+Sun Jun 12 09:37:20 1994  Christopher Lott  (lott@bogner.informatik.uni-kl.de)
+
+        * Version 1.6
+	* Removed fault that caused string literal continuation lines 
+	  not to be counted correctly as nonblank noncomment lines.
+	  This was difficult and resulted in much reorganization of
+	  the code that counts nonblank noncomment lines, newlines, 
+	  comments, and pp dirs to be more modular.
+	* Added test cases for continuation lines in string literals
+	  and in preprocessor directives.
+	* Added -v flag == print version information.  
+	  Updated the man page accordingly.
+	  Added file version.h, updated the Makefile.
+	* Updated the README to warn about different implementations
+	  of getopt() that cause mismatches in the test ouput.  This
+	  is not a serious problem.
+	* Added many comments to explain the inner workings of the
+	  counting functions. 
+
+Fri Jun 10 08:44:26 1994  Christopher Lott  (lott@bogner.informatik.uni-kl.de)
+
+        * Version 1.5
+	* Put files under revision control
+	* Added preprocessor directives:
+	  include_next, import, warning, sccs, ident, assert, unassert.
+	  I can't find documentation of #indent in K&R 1/e, K&R 2/e,
+	  or even in Stroustrup _C++_ 2/e.  However, GCC's info file
+	  mentions it, and it's supported both by gcc and Sun's cc.
+	  The rest came from reading version 2.5.8 of GCC's cccp.c.
+	  Changed the man page to reflect the additions.
+	* removed fault that caused string literals with embedded
+	  backslashes and newlines to be handled improperly.
+	  Added function string_lit() to process all string literals.
+	* Removed fault that caused backslashes outside of string
+	  literals to generate a "bad character" message.  Added a lex
+	  rule.  Now they are recognized, but the backslash processing
+	  is still not sophisticated.
+
+Changes between versions 1.3 and 1.4:
+
+	* Removed faults that caused multi-line comments to threw off
+	  the newline count and to echo comments improperly.
+	  Both were removed by switching back to the original
+	  comment-eating code; dropped use of the code from flexdoc(1).
+	* Removed fault that caused nonempty whitespace lines not to be
+	  echoed verbatim 
+	* Removed fault that caused blank line immediately after pp
+	  directive to be ignored.  Changed pp-eating code to give
+	  back the newline that terminates the pp directive; this
+	  allows the scanner to recognize the beginning of a line (^)
+	  in the pattern for whitespace lines.
+	* Removed ^ before pattern for preprocessor directives; i.e.,
+	  they will be recognized even if non-whitespace preceeds
+	  them.  This deviates from the spec in K&R 2/e but matches
+	  gcc's behavior.  Changed the man page to reflect this.
+	* Aadded more cases to the regression test suite to detect faults.
+
+Changes between versions 1.2 and 1.3:
+
+	* Upgraded to flex version 2.4.6; forced me to work around a
+	  bug in flex - use yyrestart(FILE *) to set up the scanner.
+	* Removed fault that caused the the closing */ of a comment
+	  to be omitted in the echoed output.
+
+Changes between versions 1.1 and 1.2:
+
+	* Replaced comment-eating code with example from flexdoc(1) man page
+	* lex could not count pp dirs properly, so I gave up on lex
+	  and switched to using flex.
+	* Cleaned up man page and Makefile
+	* Added scan.c.flex to the distribution for those w/o flex
+
+Release 1.1 of csize:
+
+	* First release to interested parties.
